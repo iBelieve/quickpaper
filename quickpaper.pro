@@ -1,0 +1,5 @@
+TEMPLATE = subdirs
+
+SUBDIRS = src
+
+OTHER_FILES = $$PWD/README.md
