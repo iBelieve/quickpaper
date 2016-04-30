@@ -25,6 +25,7 @@ MouseArea {
     property bool circular: false
     property bool centered: false
     property bool focused
+    property bool showFocus: true
     property color focusColor: "transparent"
 
     clip: true
@@ -39,7 +40,6 @@ MouseArea {
         property Item lastCircle
 
         property int focusWidth: width - 32
-        property bool showFocus: true
 
         function createTapCircle(x, y) {
             endRadius = centered ? width/2 : radius(x, y)
@@ -74,13 +74,14 @@ MouseArea {
 
     Rectangle {
         id: focusBackground
+        objectName: "focusBackground"
 
         anchors.fill: parent
 
         color: Utils.isDarkColor(focusColor) && focusColor.a > 0
                 ? Qt.rgba(0,0,0,0.2) : Qt.rgba(0,0,0,0.1)
 
-        opacity: __private.showFocus && __private.focused ? 1 : 0
+        opacity: showFocus && focused ? 1 : 0
 
         Behavior on opacity {
             NumberAnimation { duration: 500; easing.type: Easing.InOutQuad }
@@ -89,20 +90,21 @@ MouseArea {
 
     Rectangle {
         id: focusCircle
+        objectName: "focusRipple"
 
         property bool focusedState
 
         anchors.centerIn: parent
 
         width: focused
-                ? focusedState ? focusWidth
-                               : Math.min(parent.width - 8 * Units.dp, focusWidth + 12 * Units.dp)
+                ? focusedState ? __private.focusWidth
+                               : Math.min(parent.width - 8, __private.focusWidth + 12)
                 : parent.width/5
         height: width
 
         radius: width/2
 
-        opacity: __private.showFocus && __private.focused ? 1 : 0
+        opacity: showFocus && focused ? 1 : 0
 
         color: focusColor.a === 0 ? Qt.rgba(1,1,1,0.4) : focusColor
 
@@ -129,6 +131,7 @@ MouseArea {
 
         Item {
             id: circleItem
+            objectName: "tapRipple"
 
             property bool done
 
