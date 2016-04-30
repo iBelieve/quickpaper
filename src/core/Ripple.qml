@@ -25,7 +25,6 @@ MouseArea {
     property bool circular: false
     property bool centered: false
     property bool focused
-    property bool showFocus: true
     property color focusColor: "transparent"
 
     clip: true
@@ -36,6 +35,7 @@ MouseArea {
 
         property int startRadius: circular ? width/10 : width/6
         property int endRadius
+        property bool showFocus: true
 
         property Item lastCircle
 
@@ -81,7 +81,7 @@ MouseArea {
         color: Utils.isDarkColor(focusColor) && focusColor.a > 0
                 ? Qt.rgba(0,0,0,0.2) : Qt.rgba(0,0,0,0.1)
 
-        opacity: showFocus && focused ? 1 : 0
+        opacity: __private.showFocus && focused ? 1 : 0
 
         Behavior on opacity {
             NumberAnimation { duration: 500; easing.type: Easing.InOutQuad }
@@ -104,7 +104,7 @@ MouseArea {
 
         radius: width/2
 
-        opacity: showFocus && focused ? 1 : 0
+        opacity: __private.showFocus && focused ? 1 : 0
 
         color: focusColor.a === 0 ? Qt.rgba(1,1,1,0.4) : focusColor
 
