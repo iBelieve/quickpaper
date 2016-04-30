@@ -1,38 +1,12 @@
-/****************************************************************************
-**
-** Copyright (C) 2016 The Qt Company Ltd.
-** Contact: http://www.qt.io/licensing/
-**
-** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
-**
-** $QT_BEGIN_LICENSE:LGPL3$
-** Commercial License Usage
-** Licensees holding valid commercial Qt licenses may use this file in
-** accordance with the commercial license agreement provided with the
-** Software or, alternatively, in accordance with the terms contained in
-** a written agreement between you and The Qt Company. For licensing terms
-** and conditions see http://www.qt.io/terms-conditions. For further
-** information use the contact form at http://www.qt.io/contact-us.
-**
-** GNU Lesser General Public License Usage
-** Alternatively, this file may be used under the terms of the GNU Lesser
-** General Public License version 3 as published by the Free Software
-** Foundation and appearing in the file LICENSE.LGPLv3 included in the
-** packaging of this file. Please review the following information to
-** ensure the GNU Lesser General Public License version 3 requirements
-** will be met: https://www.gnu.org/licenses/lgpl.html.
-**
-** GNU General Public License Usage
-** Alternatively, this file may be used under the terms of the GNU
-** General Public License version 2.0 or later as published by the Free
-** Software Foundation and appearing in the file LICENSE.GPL included in
-** the packaging of this file. Please review the following information to
-** ensure the GNU General Public License version 2.0 requirements will be
-** met: http://www.gnu.org/licenses/gpl-2.0.html.
-**
-** $QT_END_LICENSE$
-**
-****************************************************************************/
+/*
+ * Paper - Additional Material components for QtQuick.Controls 2
+ *
+ * Copyright (C) 2016 Michael Spencer <sonrisesoftware@gmail.com>
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
 
 import QtQuick 2.6
 import QtGraphicalEffects 1.0
@@ -176,32 +150,46 @@ Item {
          {offset: 9, blur: 46, spread: 8}]
     ]
 
-    readonly property var _shadowColors: [
-        Qt.rgba(0,0,0, 0.2),
-        Qt.rgba(0,0,0, 0.14),
-        Qt.rgba(0,0,0, 0.12)
-    ]
+    // Nest the shadows and source view in two items rendered as a layer
+    // so the shadow is not clipped by the bounds of the source view
+    Item {
+        anchors.fill: parent
+        anchors.margins: -100
 
-    Repeater {
-        model: _shadows[elevation]
+        layer.enabled: true
 
-        delegate: RectangularGlow {
-            anchors {
-                centerIn: parent
-                verticalCenterOffset: modelData.offset
+        Item {
+            anchors.fill: parent
+            anchors.margins: -parent.anchors.margins
+
+            BoxShadow {
+                shadow: _shadows[elevation][0]
+                color: Qt.rgba(0,0,0, 0.2)
+                sourceRadius: effect.source.radius
+                fullWidth: effect.fullWidth
+                fullHeight: effect.fullHeight
             }
 
-            width: parent.width + 2 * modelData.spread + (fullWidth ? 2 * cornerRadius : 0)
-            height: parent.height + 2 * modelData.spread + (fullHeight ? 2 * cornerRadius : 0)
-            glowRadius: modelData.blur/2
-            spread: 0.05
-            color: _shadowColors[index]
-            cornerRadius: modelData.blur + (effect.source.radius || 0)
-        }
-    }
+            BoxShadow {
+                shadow: _shadows[elevation][1]
+                color: Qt.rgba(0,0,0, 0.14)
+                sourceRadius: effect.source.radius
+                fullWidth: effect.fullWidth
+                fullHeight: effect.fullHeight
+            }
 
-    ShaderEffect {
-        anchors.fill: parent
-        property alias source: effect.source;
+            BoxShadow {
+                shadow: _shadows[elevation][2]
+                color: Qt.rgba(0,0,0, 0.12)
+                sourceRadius: effect.source.radius
+                fullWidth: effect.fullWidth
+                fullHeight: effect.fullHeight
+            }
+
+            ShaderEffect {
+                anchors.fill: parent
+                property alias source: effect.source;
+            }
+        }
     }
 }

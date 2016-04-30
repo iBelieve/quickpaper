@@ -2,6 +2,7 @@
 <RCC version="1.0">
 
 <qresource prefix="/Paper">
+	<file>BoxShadow.qml</file>
 	<file>CircleMask.qml</file>
 	<file>ElevationEffect.qml</file>
 	<file>Icon.qml</file>
