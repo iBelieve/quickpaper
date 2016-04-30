@@ -1,0 +1,12 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+
+<qresource prefix="/Paper">
+	<file>CircleMask.qml</file>
+	<file>ElevationEffect.qml</file>
+	<file>Icon.qml</file>
+	<file>Ripple.qml</file>
+	<file>Utils.qml</file>
+</qresource>
+
+</RCC>

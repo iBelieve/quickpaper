@@ -1,0 +1,10 @@
+module Paper
+
+# plugin paper
+
+CircleMask 0.1 CircleMask.qml
+ElevationEffect 0.1 ElevationEffect.qml
+Icon 0.1 Icon.qml
+Ripple 0.1 Ripple.qml
+
+singleton Utils 0.1 Utils.qml

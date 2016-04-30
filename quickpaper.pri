@@ -11,7 +11,7 @@ HEADERS += $$PWD/src/plugin.h \
 SOURCES += $$PWD/src/plugin.cpp \
            $$PWD/src/core/device.cpp
 
-RESOURCES += $$PWD/src/material.qrc \
-             $$PWD/src/listitems/listitems.qrc
-
+RESOURCES += $$PWD/src/paper.qrc \
+             $$PWD/src/core/core.qrc
+             
 OTHER_FILES = $$PWD/README.md

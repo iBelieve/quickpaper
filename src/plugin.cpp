@@ -13,7 +13,6 @@
 #include <QtQml>
 
 #include "core/device.h"
-#include "core/units.h"
 
 class PaperRegisterHelper {
 
