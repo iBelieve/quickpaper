@@ -1,5 +1,5 @@
-Paper - Material Design extras for QtQuick.Controls 2
-=====================================================
+Paper for QtQuick.Controls 2
+============================
 
 [![ZenHub.io](https://img.shields.io/badge/supercharged%20by-zenhub.io-blue.svg)](https://zenhub.io)
 
