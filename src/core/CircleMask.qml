@@ -11,9 +11,15 @@
 import QtQuick 2.4
 import QtGraphicalEffects 1.0
 
+/**
+ * A mask effect that clips the source item to a circle.
+ */
 Item {
     id: item
 
+    /**
+     * The source Item to apply the circle mask to.
+     */
     property alias source: mask.source
 
     Rectangle {

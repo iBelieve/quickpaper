@@ -11,16 +11,36 @@
 import QtQuick 2.6
 import QtGraphicalEffects 1.0
 
-/*!
-   An effect for standard Material Design elevation shadows
+/**
+ * An effect for standard Material Design elevation shadows. Useful for using as `layer.effect`.
  */
 Item {
     id: effect
 
+    /**
+     * The source Item for the effect to be applied to.
+     */
     property variant source
 
+    /**
+     * The elevation of the \ref source Item.
+     */
     property int elevation: 0
+
+    /**
+     * Set to \c true if the \ref source Item is the same width as its parent and the shadow
+     * should be full width instead of rounding around the corner of the Item.
+     *
+     * @sa fullHeight
+     */
     property bool fullWidth: false
+
+    /**
+     * Set to \c true if the \ref source Item is the same height as its parent and the shadow
+     * should be full height instead of rounding around the corner of the Item.
+     *
+     * @sa fullWidth
+     */
     property bool fullHeight: false
 
     /*
@@ -47,6 +67,12 @@ Item {
      * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
      * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
      * SOFTWARE.
+     */
+    /**
+     * The shadows to use for each possible elevation. There are three shadows that when combined
+     * make up the elevation.
+     *
+     * @private
      */
     readonly property var _shadows: [
         [{offset: 0, blur: 0, spread: 0},

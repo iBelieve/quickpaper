@@ -10,6 +10,12 @@
 
 import QtGraphicalEffects 1.0
 
+/**
+ * A shadow effect similar to a CSS box shadow. Used internally by \ref ElevationEffect for
+ *  implementing the elevation shadows using box shadow values taken from Angular Material.
+ *
+ * @private
+ */
 RectangularGlow {
     property var shadow
     property var sourceRadius
